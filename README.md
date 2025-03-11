@@ -1,5 +1,4 @@
 # LakehouseCOE
-# Directions
 
 To start up the different containers individually.
 
@@ -8,7 +7,8 @@ spark 3.3 with jupyter notebook
 ```
 docker-compose up <required-services>
 ```
-Use Cases
+# Use Cases
+
 This project contains three distinct use cases:
 
 PySpark Code:
