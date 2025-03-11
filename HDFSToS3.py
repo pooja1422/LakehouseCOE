@@ -3,8 +3,8 @@ from pyspark.sql import SparkSession
 
 import time
 
-S3_ACCESS_KEY = "AKIAYQYUBGKSFHBXZA4B"
-S3_SECRET_KEY = "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"
+S3_ACCESS_KEY = <AWS-Key>
+S3_SECRET_KEY = <SECRET_KEY>
 
 conf = (
     pyspark.SparkConf()
