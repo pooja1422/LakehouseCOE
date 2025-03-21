@@ -1,15 +1,24 @@
 from kafka import KafkaProducer
+from kafka import KafkaConsumer
 import time
 
 # Kafka configuration
-bootstrap_servers = 'localhost:29092'
-topic = 'lake_house_topic'  # The Kafka topic you want to send messages to
+consumer = KafkaConsumer('lakehouse_topic',bootstrap_servers=['kafka:29092'])
+print(consumer.config)
+print(consumer.bootstrap_connected())
 
-# Create a Kafka producer instance
+bootstrap_servers = 'kafka:29092'
+topic = 'lakehouse_topic'
+
+# Kafka producer instance
 producer = KafkaProducer(
     bootstrap_servers=bootstrap_servers,
-    value_serializer=lambda v: v.encode('utf-8')  # Serialize the message to UTF-8
+    value_serializer=lambda v: v.encode('utf-8')
 )
+
+file_path = '/home/docker/sampledata/Worker_Coops.csv'
+
+print("Data successfully fetched!")
 
 def send_file_to_kafka(file_path):
     with open(file_path, 'r') as file:
@@ -21,9 +30,5 @@ def send_file_to_kafka(file_path):
     producer.flush()
 
 
-file_path = 'hdfs://namenode:9000/stock_details_5_years.csv'
-
 send_file_to_kafka(file_path)
-
-# Close the producer connection
 producer.close()
